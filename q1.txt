@@ -1,0 +1,22 @@
+Observation/Explaination:
+We can see that is_reading_pending acts as the interrupt service routine signal, meaning that the sum wont get incremented by the result unless
+is_reading_pending is == 0, which signals that the disk has put the data in the block. We can also see that the time increases when we input larger
+numbers. This is due to the fact that our number gets converted into the variable num_blocks, in which, means we have more blocks to sum because we 
+inputted a larger amount of num_blocks, which then also requires more disk reads. As such, we're constantly waiting for the disk to write data in the block
+and so the more blocks we add the more we have to wait for the disk to write data. Finally when the data is done being written, we can output the sum of all
+the results from the disk reads.
+
+Data:
+time ./sRead 10  outputs: 207
+real    0m0.116s
+user    0m0.109s
+sys     0m0.004s
+./sRead 100 ouputs 1644
+real    0m1.080s
+user    0m1.065s
+sys     0m0.008s
+./sRead 1000 outputs 16193
+real    0m10.725s
+user    0m10.539s
+sys     0m0.081s
+

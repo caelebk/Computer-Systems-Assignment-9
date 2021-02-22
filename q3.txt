@@ -1,0 +1,52 @@
+Comparing the data we can see that, aRead > tRead > sRead in realtime and systime. However, in real time, in terms of aRead & tRead, we can
+observe that they're extremely similar. However, we have to realize that tRead in my implementation takes longer time as we have to use one 
+for loop for creating threads and one thread for joining threads, where in aRead we just call exit once we've finished. Therefore, the extra 
+time in tRead is to account for the joining of every single thread created (num_blocks amount of threads). Which can be seen when the input number
+increases exponentionally so does the time, which is due to the size of num_blocks exponentionally increasing making the two for loops go on
+for much longer.
+
+
+
+
+
+DATA tRead:
+time ./tRead 10 outputs: 207
+real    0m0.015s
+user    0m0.001s
+sys     0m0.003s
+time ./tRead 100 outputs: 1644
+real    0m0.022s
+user    0m0.002s
+sys     0m0.009s
+time ./tRead 1000 outputs: 16193
+real    0m0.083s
+user    0m0.012s
+sys     0m0.063s
+
+Data aRead:
+time ./aRead 10  outputs:207
+real    0m0.015s
+user    0m0.011s
+sys     0m0.003s
+time ./aRead 100  outputs: 1644
+real    0m0.016s
+user    0m0.012s
+sys     0m0.003s
+time ./aRead 1000  outputs: 16193
+real    0m0.018s
+user    0m0.013s
+sys     0m0.004s
+
+Data sRead:
+time ./sRead 10  outputs: 207
+real    0m0.116s
+user    0m0.109s
+sys     0m0.004s
+./sRead 100 ouputs 1644
+real    0m1.080s
+user    0m1.065s
+sys     0m0.008s
+./sRead 1000 outputs 16193
+real    0m10.725s
+user    0m10.539s
+sys     0m0.081s

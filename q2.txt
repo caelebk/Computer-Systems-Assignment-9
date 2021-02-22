@@ -1,0 +1,22 @@
+In comparison to sRead, this is significantly faster in runtime. Even when a larger number is inputted, the time interval tends to be around
+the same runtime as the smaller number. Whereas, in sRead, the larger the input was the longer the runtime became (proportional). Whereas,
+in aRead, it seems as though runtime is not proportional to the number inputted. This can be seen through the implementations of both reads,
+in sRead we can see that the loop functions more closely to polling, where they wait for the data to be written then once written (recieved signal)
+they add it to the sum. Whereas in aRead, we're continously enqueueing more and more calls to the handle which in return means we're constantly asking for more data, 
+so theres work constantly being pushed into the queue while the disk is writing and no waiting to be done as we've begun multitasking. Which makes the times less proportional
+to the number of blocks as we're no longer waiting on data, we're actively requesting more and manipulating the data to add as a sum.
+
+
+Data (tested each 3 times and took the minimum):
+time ./aRead 10  outputs:207
+real    0m0.015s
+user    0m0.011s
+sys     0m0.003s
+time ./aRead 100  outputs: 1644
+real    0m0.016s
+user    0m0.012s
+sys     0m0.003s
+time ./aRead 1000  outputs: 16193
+real    0m0.018s
+user    0m0.013s
+sys     0m0.004s
